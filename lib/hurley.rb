@@ -41,8 +41,8 @@ module Hurley
     end
   end
 
-  def self.mutex
-    MUTEX.synchronize(&Proc.new)
+  def self.mutex(&block)
+    MUTEX.synchronize(&block) if block_given?
   end
 
   class Error < StandardError; end
